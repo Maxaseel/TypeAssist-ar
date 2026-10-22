@@ -213,7 +213,7 @@ fun HomeScreen(config: AppConfig, context: Context, updateInfo: GitHubRelease?, 
                     Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 16.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
                             Text(stringResource(R.string.ui_master_switch), style = MaterialTheme.typography.titleMedium)
-                            Text(if (config.isAppEnabled) "Service Active" else "Service Paused", style = MaterialTheme.typography.bodySmall, color = if (config.isAppEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(if (config.isAppEnabled) stringResource(R.string.ui_service_active) else stringResource(R.string.ui_service_paused), style = MaterialTheme.typography.bodySmall, color = if (config.isAppEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                         if (collapseFraction < 0.5f) masterSwitch()
                     }
@@ -443,10 +443,10 @@ fun HomeScreen(config: AppConfig, context: Context, updateInfo: GitHubRelease?, 
                     )
                 }
             }
-            CommandItem(".ta", stringResource(R.string.ui_ask_ai), stringResource(R.string.ui_sends_your_text_to_ai_and_replaces_it_wi))
-            CommandItem(".g", stringResource(R.string.ui_grammar_fix), stringResource(R.string.ui_fixes_spelling_punctuation_and_grammar_e))
-            CommandItem(".tr", stringResource(R.string.ui_translate), stringResource(R.string.ui_translates_your_text_into_english))
-            CommandItem(".polite", stringResource(R.string.ui_polite_tone), stringResource(R.string.ui_rewrites_your_text_to_be_more_profession))
+            CommandItem(stringResource(R.string.ui_ta), stringResource(R.string.ui_ask_ai), stringResource(R.string.ui_sends_your_text_to_ai_and_replaces_it_wi))
+            CommandItem(stringResource(R.string.ui_g), stringResource(R.string.ui_grammar_fix), stringResource(R.string.ui_fixes_spelling_punctuation_and_grammar_e))
+            CommandItem(stringResource(R.string.ui_tr), stringResource(R.string.ui_translate), stringResource(R.string.ui_translates_your_text_into_english))
+            CommandItem(stringResource(R.string.ui_polite), stringResource(R.string.ui_polite_tone), stringResource(R.string.ui_rewrites_your_text_to_be_more_profession))
 
             Spacer(modifier = Modifier.height(40.dp))
 
@@ -747,14 +747,14 @@ fun DonationSection() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             DonationItem(
-                label = "Binance Pay ID (No Fee)",
+                label = stringResource(R.string.ui_binance_pay_id_no_fee),
                 value = "724197813",
                 clipboardManager = clipboardManager,
                 context = context
             )
             HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.18f), modifier = Modifier.padding(vertical = 8.dp))
             DonationItem(
-                label = "USDT (TRC20)",
+                label = stringResource(R.string.ui_usdt_trc20),
                 value = "TPP5S7HdV4Hrrtp5Cjz7TNtttUAfZXJz5a",
                 clipboardManager = clipboardManager,
                 context = context

@@ -66,7 +66,7 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
         topBar = { 
             TopAppBar(
                 title = { Text(stringResource(R.string.ui_snippets)) },
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Back") } },
+                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, stringResource(R.string.ui_back)) } },
                 actions = {
                     IconButton(onClick = { isSortAlphabetical = !isSortAlphabetical }) {
                         Icon(
@@ -91,7 +91,7 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
                 }, 
                 containerColor = MaterialTheme.colorScheme.primary
             ) { 
-                Icon(Icons.Default.Add, "Add New Snippet") 
+                Icon(Icons.Default.Add, stringResource(R.string.ui_add_new_snippet))
             } 
         }
     ) { p ->
@@ -116,11 +116,11 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 placeholder = { Text(stringResource(R.string.ui_search_snippets)) },
-                leadingIcon = { Icon(Icons.Default.Search, "Search") },
+                leadingIcon = { Icon(Icons.Default.Search, stringResource(R.string.ui_search)) },
                 trailingIcon = {
                     if (searchQuery.isNotEmpty()) {
                         IconButton(onClick = { searchQuery = "" }) {
-                            Icon(Icons.Default.Clear, "Clear")
+                            Icon(Icons.Default.Clear, stringResource(R.string.ui_clear))
                         }
                     }
                 },
@@ -167,7 +167,7 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
         if (showEditDialog) {
             AlertDialog(
                 onDismissRequest = { showEditDialog = false },
-                title = { Text(if (originalTrigger == null) "New Snippet" else "Edit Snippet") },
+                title = { Text(if (originalTrigger == null) stringResource(R.string.ui_new_snippet) else stringResource(R.string.ui_edit_snippet)) },
                 text = {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         OutlinedTextField(
@@ -196,7 +196,7 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
                                         )
                                         if (tContents.size > 1) {
                                             IconButton(onClick = { tContents.removeAt(index) }) {
-                                                Icon(Icons.Default.Close, "Remove", tint = MaterialTheme.colorScheme.error)
+                                                Icon(Icons.Default.Close, stringResource(R.string.ui_remove), tint = MaterialTheme.colorScheme.error)
                                             }
                                         }
                                     }
@@ -205,7 +205,7 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
                                     TextButton(
                                         onClick = { tContents.add("") }
                                     ) {
-                                        Icon(Icons.Default.Add, "Add")
+                                        Icon(Icons.Default.Add, stringResource(R.string.ui_add))
                                         Spacer(Modifier.width(8.dp))
                                         Text(stringResource(R.string.ui_add_variation))
                                     }

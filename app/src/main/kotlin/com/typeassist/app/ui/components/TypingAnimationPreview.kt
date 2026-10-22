@@ -24,9 +24,9 @@ import kotlinx.coroutines.delay
 @Composable
 fun TypingAnimationPreview() {
     val scenarios = listOf(
-        Pair("Capital of France? .ta", "Paris"),
-        Pair("i go home yestarday .g", "I went home yesterday."),
-        Pair("你好世界 .tr", "Hello World")
+        Pair(stringResource(R.string.ui_preview_question), stringResource(R.string.ui_preview_answer)),
+        Pair(stringResource(R.string.ui_preview_grammar_query), stringResource(R.string.ui_preview_grammar_answer)),
+        Pair(stringResource(R.string.ui_preview_translate_query), stringResource(R.string.ui_preview_translate_answer))
     )
     
     var currentScenarioIndex by remember { mutableStateOf(0) }

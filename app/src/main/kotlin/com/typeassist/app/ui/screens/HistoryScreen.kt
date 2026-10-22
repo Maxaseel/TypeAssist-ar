@@ -46,7 +46,7 @@ fun HistoryScreen(onBack: () -> Unit) {
         topBar = { 
             TopAppBar(
                 title = { Text(stringResource(R.string.ui_history_last_5_min)) },
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Back") } },
+                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, stringResource(R.string.ui_back)) } },
                 actions = {
                     TextButton(onClick = {
                         HistoryManager.clear()
@@ -85,7 +85,7 @@ fun HistoryScreen(onBack: () -> Unit) {
                                     cm.setPrimaryClip(ClipData.newPlainText("History Item", item.text))
                                     Toast.makeText(context, context.getString(R.string.ui_copied), Toast.LENGTH_SHORT).show()
                                 }) {
-                                    Icon(Icons.Default.ContentCopy, "Copy", tint = primaryColor)
+                                    Icon(Icons.Default.ContentCopy, stringResource(R.string.ui_copy), tint = primaryColor)
                                 }
                             }
                             Spacer(modifier = Modifier.height(4.dp))

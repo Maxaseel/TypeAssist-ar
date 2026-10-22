@@ -112,7 +112,7 @@ fun JsonScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () -> Uni
         topBar = { 
             TopAppBar(
                 title = { Text(stringResource(R.string.ui_backup_restore)) },
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") } }, 
+                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.ui_back)) } },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface) 
             ) 
         }

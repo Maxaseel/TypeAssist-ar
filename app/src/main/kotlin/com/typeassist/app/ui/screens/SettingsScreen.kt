@@ -61,7 +61,7 @@ fun SettingsScreen(config: AppConfig, client: OkHttpClient, onSave: (AppConfig) 
     Scaffold(topBar = { 
         TopAppBar(
             title = { Text(stringResource(R.string.ui_settings)) },
-            navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") } }, 
+            navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.ui_back)) } },
             colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = MaterialTheme.colorScheme.surface,
                 titleContentColor = MaterialTheme.colorScheme.primary,
@@ -351,7 +351,7 @@ fun GeneralSettingsTab(config: AppConfig, onSave: (AppConfig) -> Unit, onNavigat
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(stringResource(R.string.ui_check_for_updates), fontWeight = FontWeight.Bold)
-                Text(if (isCheckingForUpdate) "Checking..." else "Current Version: ${BuildConfig.VERSION_NAME}", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(if (isCheckingForUpdate) stringResource(R.string.ui_checking) else stringResource(R.string.ui_current_version, BuildConfig.VERSION_NAME), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             if (isCheckingForUpdate) {
                 CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
@@ -463,7 +463,7 @@ fun AiProviderSettingsTab(config: AppConfig, client: OkHttpClient, onSave: (AppC
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = savedConfig.model.ifBlank { "Unknown Model" },
+                            text = savedConfig.model.ifBlank { stringResource(R.string.ui_unknown_model) },
                             fontWeight = FontWeight.Bold,
                             maxLines = 1,
                             overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
@@ -522,7 +522,7 @@ fun AiProviderSettingsTab(config: AppConfig, client: OkHttpClient, onSave: (AppC
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = savedConfig.model.ifBlank { "Unknown Model" },
+                            text = savedConfig.model.ifBlank { stringResource(R.string.ui_unknown_model) },
                             fontWeight = FontWeight.Bold,
                             maxLines = 1,
                             overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
@@ -567,7 +567,7 @@ fun AiProviderSettingsTab(config: AppConfig, client: OkHttpClient, onSave: (AppC
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = savedConfig.model.ifBlank { "Unknown Model" },
+                            text = savedConfig.model.ifBlank { stringResource(R.string.ui_unknown_model) },
                             fontWeight = FontWeight.Bold,
                             maxLines = 1,
                             overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
@@ -816,7 +816,7 @@ fun LocalLlmSetup(config: AppConfig, onSave: (AppConfig) -> Unit) {
                 ) {
                     Icon(Icons.Default.FolderOpen, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
-                    Text(if (modelPath.isBlank()) "Select Model" else "Change Model")
+                    Text(if (modelPath.isBlank()) stringResource(R.string.ui_select_model) else stringResource(R.string.ui_change_model))
                 }
 
                 if (modelPath.isNotBlank() || cachedSize > 0L) {
@@ -917,7 +917,7 @@ fun LocalLlmSetup(config: AppConfig, onSave: (AppConfig) -> Unit) {
                     )
                     Text(
                         stringResource(R.string.ui_this_model_outputs_internal_thinking_u) +
-                        "TypeAssist automatically strips it from the final output.",
+                        stringResource(R.string.ui_typeassist_strips_thinking),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f),
                         lineHeight = 14.sp
@@ -938,9 +938,9 @@ fun LocalLlmSetup(config: AppConfig, onSave: (AppConfig) -> Unit) {
             Text(stringResource(R.string.ui_disable_reasoning_output), fontWeight = FontWeight.Bold, fontSize = 14.sp)
             Text(
                 if (looksLikeReasoningModel)
-                    "Send /no_think hint and strip \u003cthink\u003e blocks from response."
+                    stringResource(R.string.ui_send_nothink_hint)
                 else
-                    "For reasoning models: suppress thinking tokens and strip \u003cthink\u003e blocks.",
+                    stringResource(R.string.ui_reasoning_suppress_thinking),
                 fontSize = 11.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 lineHeight = 14.sp
@@ -1005,8 +1005,14 @@ fun LocalLlmHelp(primaryColor: Color, context: android.content.Context) {
 @Composable
 fun GeminiHelp(primaryColor: Color, context: android.content.Context) {
     Text(stringResource(R.string.ui_how_to_get_gemini_api_key), fontWeight = FontWeight.Bold, fontSize = 18.sp); Spacer(Modifier.height(16.dp))
-    val steps = listOf("1. Visit Google AI Studio at ", "2. Sign in with your Google account.", "3. Click 'Get API key'.", "4. Click 'Create API key'.", "5. Copy and paste above.", "6. Select Model.", "7. Click Save.")
-    val annotatedString = buildAnnotatedString { steps.forEach { step -> if (step.contains("Google AI Studio")) { append("1. Visit Google AI Studio at "); pushStringAnnotation(tag = "URL", annotation = "https://aistudio.google.com/"); withStyle(style = SpanStyle(color = primaryColor, fontWeight = FontWeight.Bold)) { append("aistudio.google.com") }; pop(); append(".\n") } else { append(step + "\n") } } }
+    val steps = listOf(stringResource(R.string.ui_gemini_sign_in), stringResource(R.string.ui_gemini_get_key), stringResource(R.string.ui_gemini_create_key), stringResource(R.string.ui_gemini_copy_key), stringResource(R.string.ui_gemini_select_model), stringResource(R.string.ui_gemini_save))
+    val annotatedString = buildAnnotatedString {
+        append(stringResource(R.string.ui_gemini_visit_prefix))
+        pushStringAnnotation(tag = "URL", annotation = "https://aistudio.google.com/")
+        withStyle(style = SpanStyle(color = primaryColor, fontWeight = FontWeight.Bold)) { append(stringResource(R.string.ui_gemini_link)) }
+        pop(); append(".\n")
+        steps.forEach { append(it + "\n") }
+    }
     ClickableText(text = annotatedString, style = LocalTextStyle.current.copy(fontSize = 14.sp, lineHeight = 20.sp, color = MaterialTheme.colorScheme.onSurface), onClick = { offset -> annotatedString.getStringAnnotations(tag = "URL", start = offset, end = offset).firstOrNull()?.let { annotation -> context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))) } })
 }
 
@@ -1014,27 +1020,17 @@ fun GeminiHelp(primaryColor: Color, context: android.content.Context) {
 fun CloudflareHelp(primaryColor: Color, context: android.content.Context) {
     Text(stringResource(R.string.ui_how_to_setup_cloudflare_ai), fontWeight = FontWeight.Bold, fontSize = 18.sp); Spacer(Modifier.height(16.dp))
     val steps = listOf(
-        "1. Visit Workers AI at ",
-        "2. Sign in with your Cloudflare account.",
-        "3. Click on 'REST API'.",
-        "4. Click 'Create a Workers AI API token'.",
-        "5. Copy and paste the API Key above.",
-        "6. Copy your 'Account ID' from the same page.",
-        "7. Paste Account ID and Token above.",
-        "8. Click Test and Save."
+        stringResource(R.string.ui_cloudflare_sign_in), stringResource(R.string.ui_cloudflare_rest_api),
+        stringResource(R.string.ui_cloudflare_create_token), stringResource(R.string.ui_cloudflare_copy_key),
+        stringResource(R.string.ui_cloudflare_account_id), stringResource(R.string.ui_cloudflare_paste_ids),
+        stringResource(R.string.ui_cloudflare_test_save)
     )
-    val annotatedString = buildAnnotatedString { 
-        steps.forEach { step -> 
-            if (step.contains("Visit Workers AI at")) { 
-                append("1. Visit Workers AI at ")
-                pushStringAnnotation(tag = "URL", annotation = "https://dash.cloudflare.com/?to=/:account/ai/workers-ai")
-                withStyle(style = SpanStyle(color = primaryColor, fontWeight = FontWeight.Bold)) { append("Cloudflare Dash") }
-                pop()
-                append(".\n")
-            } else { 
-                append(step + "\n") 
-            } 
-        } 
+    val annotatedString = buildAnnotatedString {
+        append(stringResource(R.string.ui_cloudflare_visit_prefix))
+        pushStringAnnotation(tag = "URL", annotation = "https://dash.cloudflare.com/?to=/:account/ai/workers-ai")
+        withStyle(style = SpanStyle(color = primaryColor, fontWeight = FontWeight.Bold)) { append(stringResource(R.string.ui_cloudflare_link)) }
+        pop(); append(".\n")
+        steps.forEach { append(it + "\n") }
     }
     ClickableText(text = annotatedString, style = LocalTextStyle.current.copy(fontSize = 14.sp, lineHeight = 20.sp, color = MaterialTheme.colorScheme.onSurface), onClick = { offset -> annotatedString.getStringAnnotations(tag = "URL", start = offset, end = offset).firstOrNull()?.let { annotation -> context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))) } })
 }
@@ -1051,7 +1047,7 @@ fun CustomApiHelp(primaryColor: Color, context: android.content.Context) {
 }
 
 private fun getFileName(context: android.content.Context, uriOrPath: String): String {
-    if (uriOrPath.isBlank()) return "No model selected"
+    if (uriOrPath.isBlank()) return context.getString(R.string.ui_no_model_selected)
     if (!uriOrPath.startsWith("content://")) {
         return uriOrPath.substringAfterLast("/")
     }

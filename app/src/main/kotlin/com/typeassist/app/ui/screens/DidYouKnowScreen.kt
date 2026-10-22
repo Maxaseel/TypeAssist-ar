@@ -49,9 +49,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             subtitle = stringResource(R.string.ui_reshape_text_with_custom_prompts),
             description = stringResource(R.string.ui_instead_of_fixed_trigger_commands_this),
             examples = listOf(
-                "Hey boss i cant come today ...Make it formal..." to "Dear Manager,\nI am writing to inform you that I will be unable to attend work today.",
-                "Hola amigo ...Translate to English..." to "Hello friend",
-                "Meeting at 5pm ...Add calendar emoji..." to "Meeting at 5pm 📅"
+                stringResource(R.string.ui_demo_formal_input) to stringResource(R.string.ui_demo_formal_output),
+                stringResource(R.string.ui_demo_translate_input) to stringResource(R.string.ui_demo_translate_output),
+                stringResource(R.string.ui_demo_calendar_input) to stringResource(R.string.ui_demo_calendar_output)
             ),
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -61,9 +61,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             subtitle = stringResource(R.string.ui_calculate_inside_any_app),
             description = stringResource(R.string.ui_solve_math_problems_instantly_just_wra),
             examples = listOf(
-                "Total: (.c: 25 * 4)" to "Total: 100",
-                "Share: (.c: 150 / 3)" to "Share: 50",
-                "Area: (.c: 3.14 * 5^2)" to "Area: 78.5"
+                stringResource(R.string.ui_demo_math_total) to stringResource(R.string.ui_demo_math_total_output),
+                stringResource(R.string.ui_demo_math_share) to stringResource(R.string.ui_demo_math_share_output),
+                stringResource(R.string.ui_demo_math_area) to stringResource(R.string.ui_demo_math_area_output)
             ),
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
@@ -73,9 +73,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             subtitle = stringResource(R.string.ui_text_expander),
             description = stringResource(R.string.ui_save_frequently_used_text_for_quick_ac),
             examples = listOf(
-                "..email" to "my.name@example.com",
-                "..addr" to "123 Main St, New York, NY",
-                "(.save:ph:+15550199)" to "(Snippet 'ph' saved!)"
+                stringResource(R.string.ui_demo_email_prefix) to stringResource(R.string.ui_demo_email_output),
+                stringResource(R.string.ui_demo_address_prefix) to stringResource(R.string.ui_demo_address_output),
+                stringResource(R.string.ui_demo_save_command) to stringResource(R.string.ui_demo_save_output)
             ),
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
             contentColor = MaterialTheme.colorScheme.onTertiaryContainer
@@ -109,9 +109,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
                 contentColor = MaterialTheme.colorScheme.onPrimary
             ) {
                 if (pagerState.currentPage < features.size - 1) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowForward, "Next")
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, stringResource(R.string.ui_next))
                 } else {
-                    Icon(Icons.Default.Check, "Got it")
+                    Icon(Icons.Default.Check, stringResource(R.string.ui_got_it))
                 }
             }
         }
@@ -124,7 +124,7 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
         ) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                 IconButton(onClick = onFinished) {
-                    Icon(Icons.Default.Close, "Close", tint = MaterialTheme.colorScheme.onBackground)
+                    Icon(Icons.Default.Close, stringResource(R.string.ui_close), tint = MaterialTheme.colorScheme.onBackground)
                 }
             }
 
@@ -250,7 +250,7 @@ fun LivePreviewBox(examples: List<Pair<String, String>>) {
             delay(500)
             
             isTyping = false
-            displayedText = "Processing..."
+            displayedText = stringResource(R.string.ui_processing)
             delay(800)
             
             displayedText = output
@@ -268,7 +268,7 @@ fun LivePreviewBox(examples: List<Pair<String, String>>) {
         Box(Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.CenterStart) {
             Text(
                 text = buildAnnotatedString {
-                    if (displayedText == "Processing...") {
+                    if (displayedText == stringResource(R.string.ui_processing)) {
                         withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSurfaceVariant, fontStyle = FontStyle.Italic)) {
                             append(displayedText)
                         }

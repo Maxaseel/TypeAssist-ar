@@ -57,10 +57,10 @@ fun CommandsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
         topBar = { 
             TopAppBar(
                 title = { Text(stringResource(R.string.ui_commands)) },
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Back") } },
+                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, stringResource(R.string.ui_back)) } },
                 actions = {
                     IconButton(onClick = onNavigateLibrary) {
-                        Icon(Icons.Default.AutoAwesome, "Browse Gallery", tint = MaterialTheme.colorScheme.primary)
+                        Icon(Icons.Default.AutoAwesome, stringResource(R.string.ui_browse_gallery), tint = MaterialTheme.colorScheme.primary)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -81,7 +81,7 @@ fun CommandsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
                 }, 
                 containerColor = MaterialTheme.colorScheme.primary
             ) { 
-                Icon(Icons.Default.Add, "Add New Command") 
+                Icon(Icons.Default.Add, stringResource(R.string.ui_add_new_command))
             } 
         }
     ) { p ->
@@ -109,7 +109,7 @@ fun CommandsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
                                     Text(stringResource(R.string.ui_pro_tip_edit_mid_sentence), fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSecondaryContainer)
                                     Spacer(Modifier.weight(1f))
                                     IconButton(onClick = { showTip = false }, modifier = Modifier.size(24.dp)) {
-                                        Icon(Icons.Default.Close, "Dismiss", tint = MaterialTheme.colorScheme.onSecondaryContainer)
+                                        Icon(Icons.Default.Close, stringResource(R.string.ui_dismiss), tint = MaterialTheme.colorScheme.onSecondaryContainer)
                                     }
                                 }
                                 Spacer(Modifier.height(8.dp))
@@ -166,7 +166,7 @@ fun CommandsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
         if (showEditDialog) {
             AlertDialog(
                 onDismissRequest = { showEditDialog = false },
-                title = { Text(if (originalPattern == null) "New Command" else "Edit Command") },
+                title = { Text(if (originalPattern == null) stringResource(R.string.ui_new_command) else stringResource(R.string.ui_edit_command)) },
                 text = {
                     Column {
                         OutlinedTextField(

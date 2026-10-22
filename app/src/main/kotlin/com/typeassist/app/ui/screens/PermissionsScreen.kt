@@ -105,7 +105,7 @@ fun PermissionsScreen(
                     title = { Text(stringResource(R.string.ui_troubleshooting)) },
                     navigationIcon = {
                         IconButton(onClick = onFinished) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.ui_back))
                         }
                     }
                 )
@@ -226,7 +226,7 @@ fun PermissionsScreen(
                 disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
             )
         ) {
-            Text(if (isStandalone) "Back to Settings" else "Get Started")
+            Text(if (isStandalone) stringResource(R.string.ui_back_to_settings) else stringResource(R.string.ui_get_started))
         }
     } }
     
