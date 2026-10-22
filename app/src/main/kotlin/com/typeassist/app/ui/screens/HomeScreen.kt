@@ -306,18 +306,18 @@ fun HomeScreen(config: AppConfig, context: Context, updateInfo: GitHubRelease?, 
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                MenuCard(Modifier.weight(1f), "Commands", Icons.Default.Edit) { onNavigate("commands") }
-                MenuCard(Modifier.weight(1f), "Settings", Icons.Default.Settings) { onNavigate("settings") }
+                MenuCard(Modifier.weight(1f), stringResource(R.string.ui_commands), Icons.Default.Edit) { onNavigate("commands") }
+                MenuCard(Modifier.weight(1f), stringResource(R.string.ui_settings), Icons.Default.Settings) { onNavigate("settings") }
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                MenuCard(Modifier.weight(1f), "Backup", Icons.Default.Code) { onNavigate("json") }
-                MenuCard(Modifier.weight(1f), "Test Lab", Icons.Default.Science) { onNavigate("test") }
+                MenuCard(Modifier.weight(1f), stringResource(R.string.ui_backup), Icons.Default.Code) { onNavigate("json") }
+                MenuCard(Modifier.weight(1f), stringResource(R.string.ui_test_lab), Icons.Default.Science) { onNavigate("test") }
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                MenuCard(Modifier.weight(1f), "History", Icons.AutoMirrored.Filled.List) { onNavigate("history") }
-                MenuCard(Modifier.weight(1f), "Snippets", Icons.Default.Favorite) { onNavigate("snippets") }
+                MenuCard(Modifier.weight(1f), stringResource(R.string.ui_history), Icons.AutoMirrored.Filled.List) { onNavigate("history") }
+                MenuCard(Modifier.weight(1f), stringResource(R.string.ui_snippets), Icons.Default.Favorite) { onNavigate("snippets") }
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -397,10 +397,10 @@ fun HomeScreen(config: AppConfig, context: Context, updateInfo: GitHubRelease?, 
                     Spacer(modifier = Modifier.height(14.dp))
                     HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.18f))
                     Spacer(modifier = Modifier.height(14.dp))
-                    StepItem("1", "Enable Master Switch and permission above.")
-                    StepItem("2", "Go to API Setup and add your Gemini key.")
-                    StepItem("3", "Open any app such as WhatsApp or Notes.")
-                    StepItem("4", "Type text plus a trigger, for example i go home yestarday .g")
+                    StepItem("1", stringResource(R.string.ui_enable_master_switch_and_permission_abov))
+                    StepItem("2", stringResource(R.string.ui_go_to_api_setup_and_add_your_gemini_key))
+                    StepItem("3", stringResource(R.string.ui_open_any_app_such_as_whatsapp_or_notes))
+                    StepItem("4", stringResource(R.string.ui_type_text_plus_a_trigger_for_example_i_g))
                     Spacer(modifier = Modifier.height(16.dp))
                     OutlinedButton(
                         onClick = { onNavigate("guide") },
@@ -443,10 +443,10 @@ fun HomeScreen(config: AppConfig, context: Context, updateInfo: GitHubRelease?, 
                     )
                 }
             }
-            CommandItem(".ta", "Ask AI", "Sends your text to AI and replaces it with the answer.")
-            CommandItem(".g", "Grammar Fix", "Fixes spelling, punctuation, and grammar errors.")
-            CommandItem(".tr", "Translate", "Translates your text into English.")
-            CommandItem(".polite", "Polite Tone", "Rewrites your text to be more professional.")
+            CommandItem(".ta", stringResource(R.string.ui_ask_ai), stringResource(R.string.ui_sends_your_text_to_ai_and_replaces_it_wi))
+            CommandItem(".g", stringResource(R.string.ui_grammar_fix), stringResource(R.string.ui_fixes_spelling_punctuation_and_grammar_e))
+            CommandItem(".tr", stringResource(R.string.ui_translate), stringResource(R.string.ui_translates_your_text_into_english))
+            CommandItem(".polite", stringResource(R.string.ui_polite_tone), stringResource(R.string.ui_rewrites_your_text_to_be_more_profession))
 
             Spacer(modifier = Modifier.height(40.dp))
 
