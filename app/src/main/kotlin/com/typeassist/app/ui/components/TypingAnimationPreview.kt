@@ -1,5 +1,7 @@
 package com.typeassist.app.ui.components
 
+import com.typeassist.app.R
+
 import androidx.compose.animation.core.*
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.background

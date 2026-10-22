@@ -1,5 +1,7 @@
 package com.typeassist.app.service
 
+import com.typeassist.app.R
+
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat

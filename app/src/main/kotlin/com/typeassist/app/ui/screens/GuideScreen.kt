@@ -1,5 +1,7 @@
 package com.typeassist.app.ui.screens
 
+import com.typeassist.app.R
+
 import android.app.Activity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.AnimatedVisibility

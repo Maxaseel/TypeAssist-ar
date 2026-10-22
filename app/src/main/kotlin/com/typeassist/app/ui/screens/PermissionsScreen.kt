@@ -1,5 +1,7 @@
 package com.typeassist.app.ui.screens
 
+import com.typeassist.app.R
+
 import android.Manifest
 import androidx.compose.ui.res.stringResource
 import android.content.Context

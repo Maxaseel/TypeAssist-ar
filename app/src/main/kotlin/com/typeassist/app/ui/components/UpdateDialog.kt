@@ -1,5 +1,7 @@
 package com.typeassist.app.ui.components
 
+import com.typeassist.app.R
+
 import android.content.Intent
 import androidx.compose.ui.res.stringResource
 import android.net.Uri
