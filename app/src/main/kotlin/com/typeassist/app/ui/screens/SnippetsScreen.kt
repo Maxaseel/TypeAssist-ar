@@ -244,7 +244,7 @@ fun SnippetsScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack: () ->
             AlertDialog(
                 onDismissRequest = { snippetToDelete = null },
                 title = { Text(stringResource(R.string.ui_delete_snippet)) },
-                text = { Text(stringResource(R.string.ui_are_you_sure_you_want_to_delete_1_s, snippetToDelete?.trigger)) },
+                text = { Text(stringResource(R.string.ui_are_you_sure_you_want_to_delete_1_s, snippetToDelete?.trigger.orEmpty())) },
                 confirmButton = {
                     Button(
                         onClick = {
