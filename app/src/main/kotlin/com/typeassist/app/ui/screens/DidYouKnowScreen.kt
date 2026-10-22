@@ -233,6 +233,7 @@ fun StaticExamplesBox(examples: List<Pair<String, String>>) {
 
 @Composable
 fun LivePreviewBox(examples: List<Pair<String, String>>) {
+    val processingText = stringResource(R.string.ui_processing)
     var displayedText by remember { mutableStateOf("") }
     var isTyping by remember { mutableStateOf(true) }
     var currentExampleIndex by remember { mutableStateOf(0) }
@@ -250,7 +251,7 @@ fun LivePreviewBox(examples: List<Pair<String, String>>) {
             delay(500)
             
             isTyping = false
-            displayedText = stringResource(R.string.ui_processing)
+            displayedText = processingText
             delay(800)
             
             displayedText = output
@@ -268,7 +269,7 @@ fun LivePreviewBox(examples: List<Pair<String, String>>) {
         Box(Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.CenterStart) {
             Text(
                 text = buildAnnotatedString {
-                    if (displayedText == stringResource(R.string.ui_processing)) {
+                    if (displayedText == processingText) {
                         withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSurfaceVariant, fontStyle = FontStyle.Italic)) {
                             append(displayedText)
                         }
