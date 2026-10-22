@@ -1,6 +1,7 @@
 package com.typeassist.app.ui.screens
 
 import android.app.Activity
+import androidx.compose.ui.res.stringResource
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -42,15 +43,15 @@ fun HistoryScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = { 
             TopAppBar(
-                title = { Text("History (Last 5 Min)") }, 
+                title = { Text(stringResource(R.string.ui_history_last_5_min)) },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Back") } },
                 actions = {
                     TextButton(onClick = {
                         HistoryManager.clear()
                         historyItems = HistoryManager.getHistory()
-                        Toast.makeText(context, "History Cleared", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.ui_history_cleared), Toast.LENGTH_SHORT).show()
                     }) {
-                        Text("Clear", color = MaterialTheme.colorScheme.primary)
+                        Text(stringResource(R.string.ui_clear), color = MaterialTheme.colorScheme.primary)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface, titleContentColor = MaterialTheme.colorScheme.primary, navigationIconContentColor = MaterialTheme.colorScheme.primary)
@@ -59,7 +60,7 @@ fun HistoryScreen(onBack: () -> Unit) {
     ) { p ->
         if (historyItems.isEmpty()) {
             Box(modifier = Modifier.padding(p).fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("No history available.", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(R.string.ui_no_history_available), color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         } else {
             LazyColumn(modifier = Modifier.padding(p).padding(16.dp)) {
@@ -80,7 +81,7 @@ fun HistoryScreen(onBack: () -> Unit) {
                                 IconButton(onClick = {
                                     val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                     cm.setPrimaryClip(ClipData.newPlainText("History Item", item.text))
-                                    Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.ui_copied), Toast.LENGTH_SHORT).show()
                                 }) {
                                     Icon(Icons.Default.ContentCopy, "Copy", tint = primaryColor)
                                 }

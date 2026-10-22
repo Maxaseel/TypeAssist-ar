@@ -1,6 +1,7 @@
 package com.typeassist.app.ui.components
 
 import androidx.compose.animation.core.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -94,7 +95,7 @@ fun TypingAnimationPreview() {
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "AI is thinking",
+                        text = stringResource(R.string.ui_ai_is_thinking),
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold
                     )
@@ -121,7 +122,7 @@ fun TypingAnimationPreview() {
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text(
-                        text = "Live Preview",
+                        text = stringResource(R.string.ui_live_preview),
                         fontSize = 10.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

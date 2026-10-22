@@ -1,6 +1,7 @@
 package com.typeassist.app.ui.screens
 
 import android.app.Activity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -42,9 +43,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
 
     val features = listOf(
         DiscoveryFeature(
-            title = "Prompt Anywhere",
-            subtitle = "Reshape text with custom prompts",
-            description = "Instead of fixed trigger commands, this super command lets you add custom trigger commands to reshape your texts.\n\nWrite your prompts between ...here... and it will process according to your prompts.\n\nImagine you are writing an email and want to make it formal. You don't need to delete and rewrite. Just append ...Make it formal... and watch the magic happen.",
+            title = stringResource(R.string.ui_prompt_anywhere),
+            subtitle = stringResource(R.string.ui_reshape_text_with_custom_prompts),
+            description = stringResource(R.string.ui_instead_of_fixed_trigger_commands_this),
             examples = listOf(
                 "Hey boss i cant come today ...Make it formal..." to "Dear Manager,\nI am writing to inform you that I will be unable to attend work today.",
                 "Hola amigo ...Translate to English..." to "Hello friend",
@@ -54,9 +55,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         DiscoveryFeature(
-            title = "Instant Math",
-            subtitle = "Calculate inside any app",
-            description = "Solve math problems instantly. Just wrap the expression in '(.c: ... )'.\n\nGreat for calculating costs, splitting bills, or quick conversions while chatting.",
+            title = stringResource(R.string.ui_instant_math),
+            subtitle = stringResource(R.string.ui_calculate_inside_any_app),
+            description = stringResource(R.string.ui_solve_math_problems_instantly_just_wra),
             examples = listOf(
                 "Total: (.c: 25 * 4)" to "Total: 100",
                 "Share: (.c: 150 / 3)" to "Share: 50",
@@ -66,9 +67,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
         DiscoveryFeature(
-            title = "Snippets",
-            subtitle = "Text Expander",
-            description = "Save frequently used text for quick access.\n\nType the prefix '..' followed by the snippet name to expand it.\n\nUse '(.save:name:content)' to save a new snippet instantly without opening the app.",
+            title = stringResource(R.string.ui_snippets),
+            subtitle = stringResource(R.string.ui_text_expander),
+            description = stringResource(R.string.ui_save_frequently_used_text_for_quick_ac),
             examples = listOf(
                 "..email" to "my.name@example.com",
                 "..addr" to "123 Main St, New York, NY",
@@ -78,9 +79,9 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             contentColor = MaterialTheme.colorScheme.onTertiaryContainer
         ),
         DiscoveryFeature(
-            title = "Wrong Language?",
-            subtitle = "Customize AI Prompts",
-            description = "Is the AI replying in English when you want German or Spanish?\n\nYou can edit ANY command! Go to the 'Commands' menu, tap a trigger, and add 'Return in same language.' to the system prompt.\n\nIt's all about prompting—you are in control.",
+            title = stringResource(R.string.ui_wrong_language),
+            subtitle = stringResource(R.string.ui_customize_ai_prompts),
+            description = stringResource(R.string.ui_is_the_ai_replying_in_english_when_you),
             examples = emptyList(),
             containerColor = MaterialTheme.colorScheme.errorContainer,
             contentColor = MaterialTheme.colorScheme.onErrorContainer,
@@ -126,7 +127,7 @@ fun DidYouKnowScreen(onFinished: () -> Unit) {
             }
 
             Text(
-                "Did You Know?",
+                stringResource(R.string.ui_did_you_know),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,

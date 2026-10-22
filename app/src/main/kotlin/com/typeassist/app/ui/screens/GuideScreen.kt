@@ -1,6 +1,7 @@
 package com.typeassist.app.ui.screens
 
 import android.app.Activity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -36,7 +37,7 @@ fun GuideScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("User Guide") },
+                title = { Text(stringResource(R.string.ui_user_guide)) },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, "Back") } },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface, titleContentColor = MaterialTheme.colorScheme.primary, navigationIconContentColor = MaterialTheme.colorScheme.primary)
             )
@@ -45,13 +46,13 @@ fun GuideScreen(onBack: () -> Unit) {
         LazyColumn(modifier = Modifier.padding(p).padding(16.dp)) {
             item {
                 Text(
-                    "Welcome to TypeAssist!",
+                    stringResource(R.string.ui_welcome_to_typeassist),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    "Master your new AI keyboard assistant.",
+                    stringResource(R.string.ui_master_your_new_ai_keyboard_assistant),
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(bottom = 16.dp)

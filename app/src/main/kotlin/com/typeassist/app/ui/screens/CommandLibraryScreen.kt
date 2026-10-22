@@ -1,6 +1,7 @@
 package com.typeassist.app.ui.screens
 
 import android.widget.Toast
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,7 +29,7 @@ fun CommandLibraryScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack:
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Command Gallery") },
+                title = { Text(stringResource(R.string.ui_command_gallery)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
@@ -50,13 +51,13 @@ fun CommandLibraryScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack:
         ) {
             item {
                 Text(
-                    "Discover Pro Commands",
+                    stringResource(R.string.ui_discover_pro_commands),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    "Tap '+' to add a command to your collection.",
+                    stringResource(R.string.ui_tap_to_add_a_command_to_your_collectio),
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(bottom = 16.dp)
@@ -77,7 +78,7 @@ fun CommandLibraryScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack:
                         }
 
                         if (exists) {
-                            Toast.makeText(context, "Trigger '${template.recommendedTrigger}' already exists!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.ui_trigger_1_s_already_exists , template.recommendedTrigger), Toast.LENGTH_SHORT).show()
                         } else {
                             if (template.isInline) {
                                 val newList = currentInline.toMutableList()
@@ -88,7 +89,7 @@ fun CommandLibraryScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack:
                                 newList.add(Trigger(template.recommendedTrigger, template.systemPrompt))
                                 onSave(config.copy(triggers = newList))
                             }
-                            Toast.makeText(context, "Added '${template.title}' to your commands! ✅", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.ui_added_1_s_to_your_commands , template.title), Toast.LENGTH_SHORT).show()
                         }
                     },
                     onViewInfo = { selectedTemplate = template }
@@ -106,16 +107,16 @@ fun CommandLibraryScreen(config: AppConfig, onSave: (AppConfig) -> Unit, onBack:
                     Column {
                         Text(selectedTemplate?.description ?: "", fontWeight = FontWeight.SemiBold)
                         Spacer(Modifier.height(12.dp))
-                        Text("Trigger: ", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                        Text(stringResource(R.string.ui_trigger), fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                         Text(selectedTemplate?.recommendedTrigger ?: "", fontSize = 14.sp)
                         Spacer(Modifier.height(12.dp))
-                        Text("System Prompt:", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                        Text(stringResource(R.string.ui_system_prompt), fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                         Text(selectedTemplate?.systemPrompt ?: "", fontSize = 13.sp, lineHeight = 18.sp)
                     }
                 },
                 confirmButton = {
                     Button(onClick = { selectedTemplate = null }) {
-                        Text("Close")
+                        Text(stringResource(R.string.ui_close))
                     }
                 }
             )
@@ -151,7 +152,7 @@ fun TemplateCard(template: CommandTemplate, onAdd: () -> Unit, onViewInfo: () ->
                             shape = androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
                         ) {
                             Text(
-                                "INLINE",
+                                stringResource(R.string.ui_inline),
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
@@ -166,7 +167,7 @@ fun TemplateCard(template: CommandTemplate, onAdd: () -> Unit, onViewInfo: () ->
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
-                    "Trigger: ${template.recommendedTrigger}",
+                    stringResource(R.string.ui_trigger_1_s, template.recommendedTrigger),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
